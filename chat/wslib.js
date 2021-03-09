@@ -1,5 +1,6 @@
 const WebSocket = require("ws");
-const back = require("./models/message");
+const Message =  require("./models/message");
+
 
 const clients = [];
 const messages = [];
@@ -13,22 +14,26 @@ const wsConnection = (server) => {
 
     ws.on("message", (message) => {
       messages.push(message);
-      console.log(message);
       sendMessages();
-      persist();
-      update();
+      persist(message);
+      
     });
   });
 
   const sendMessages = () => {
     clients.forEach((client) => client.send(JSON.stringify(messages)));
   };
-  const persist =() =>{
-
-
+  const persist =(ms) =>{
+    Message.create({ message: ms, user: "navegador", ts: Date.now() }).then(
+      (result) => {
+        update();
+      }
+    );
   }
   const update = () =>{
-
+    Message.findAll().then((result) => {
+     messages=result;
+    });
   }
 };
 

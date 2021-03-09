@@ -17,7 +17,7 @@ router.post("/", function (req, res, next) {
     return res.status(400).send(error);
   }
 
-  Message.create({ name: req.body.name, email: req.body.email }).then(
+  Message.create({ message: req.body.message, user: req.body.user, ts: Date.now() }).then(
     (result) => {
       res.send(result);
     }
