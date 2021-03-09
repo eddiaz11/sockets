@@ -1,6 +1,11 @@
+#init
+
 cd chat
 npm install 
 npm start
+
+
+#Services location
 
 Interfaz
 
