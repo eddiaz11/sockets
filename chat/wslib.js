@@ -1,5 +1,5 @@
 const WebSocket = require("ws");
-const { update } = require("./models/message");
+const back = require("./models/message");
 
 const clients = [];
 const messages = [];
@@ -13,6 +13,7 @@ const wsConnection = (server) => {
 
     ws.on("message", (message) => {
       messages.push(message);
+      console.log(message);
       sendMessages();
       persist();
       update();
@@ -24,9 +25,10 @@ const wsConnection = (server) => {
   };
   const persist =() =>{
 
+
   }
   const update = () =>{
-    
+
   }
 };
 
