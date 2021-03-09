@@ -3,7 +3,7 @@ const Message =  require("./models/message");
 
 
 const clients = [];
-const messages = [];
+var messages = [];
 
 const wsConnection = (server) => {
   const wss = new WebSocket.Server({ server });
@@ -32,7 +32,9 @@ const wsConnection = (server) => {
   }
   const update = () =>{
     Message.findAll().then((result) => {
-     messages=result;
+      messages=[];
+      result.forEach((msj) => messages.push(msj.message) );
+   
     });
   }
 };
