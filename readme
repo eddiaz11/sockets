@@ -1,0 +1,11 @@
+cd chat
+npm install 
+npm start
+
+Interfaz
+
+http://localhost:3000/
+
+Api
+
+http://localhost:3000/message
